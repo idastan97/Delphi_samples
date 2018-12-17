@@ -1,0 +1,140 @@
+unit Unit1;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, ExtCtrls, StdCtrls, Buttons, jpeg;
+
+type
+  TForm1 = class(TForm)
+    StringGrid1: TStringGrid;
+    Image1: TImage;
+    StringGrid2: TStringGrid;
+    BitBtn1: TBitBtn;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Edit3: TEdit;
+    procedure FormCreate(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+var
+  a1,b1,c1,x1,y1,z1:integer;
+  a2,b2,c2,x2,y2,z2:integer;
+  
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  a1:=1;
+  b1:=2;
+  c1:=3;
+  x1:=5000;
+  y1:=15000;
+  z1:=20000;
+
+  a2:=1;
+  b2:=3;
+  c2:=2;
+  x2:=StrToInt(Edit1.Text);
+  y2:=StrToInt(Edit2.Text);
+  z2:=StrToInt(Edit3.Text);
+ with StringGrid1 do
+ begin
+  ColWidths[0]:=40;
+  ColWidths[1]:=100;
+
+  Cells[0, 0]:='Area';
+  Cells[1, 0]:='Sales Target';
+
+  Cells[0, 1]:=IntToStr(a1);
+  Cells[0, 2]:=IntToStr(b1);
+  Cells[0, 3]:=IntToStr(c1);
+
+  Cells[1, 1]:=IntToStr(x1);
+  Cells[1, 2]:=IntToStr(y1);
+  Cells[1, 3]:=IntToStr(z1);
+ end;
+ with StringGrid2 do
+ begin
+  ColWidths[0]:=50;
+  ColWidths[1]:=50;
+  ColWidths[2]:=70;
+  ColWidths[3]:=130;
+
+  Cells[0, 0]:='Office';
+  Cells[1, 0]:='Area';
+  Cells[2, 0]:='Sales';
+  Cells[3, 0]:='Target reached?';
+
+  Cells[0, 1]:='A';
+  Cells[0, 2]:='B';
+  Cells[0, 3]:='C';
+
+  Cells[1, 1]:=IntToStr(a2);
+  Cells[1, 2]:=IntToStr(b2);
+  Cells[1, 3]:=IntToStr(c2);
+
+  Cells[2, 1]:=IntToStr(x2);
+  Cells[2, 2]:=IntToStr(y2);
+  Cells[2, 3]:=IntToStr(z2);
+ end;
+end;
+
+procedure TForm1.BitBtn1Click(Sender: TObject);
+begin
+ If a2=a1 then
+ begin
+  If x2>=x1 then With StringGrid2 do cells[3, 1]:='Yes' else With StringGrid2 do cells[3, 1]:='No';
+ end;
+ If a2=b1 then
+ begin
+  If x2>=y1 then With StringGrid2 do cells[3, 1]:='Yes' else With StringGrid2 do cells[3, 1]:='No';
+ end;
+ If a2=c1 then
+ begin
+  If x2>=z1 then With StringGrid2 do cells[3, 1]:='Yes' else With StringGrid2 do cells[3, 1]:='No';
+ end;
+
+ If b2=a1 then
+ begin
+  If y2>=x1 then With StringGrid2 do cells[3, 2]:='Yes' else With StringGrid2 do cells[3, 2]:='No';
+ end;
+ If b2=b1 then
+ begin
+  If y2>=y1 then With StringGrid2 do cells[3, 2]:='Yes' else With StringGrid2 do cells[3, 2]:='No';
+ end;
+ If b2=c1 then
+ begin
+  If y2>=z1 then With StringGrid2 do cells[3, 2]:='Yes' else With StringGrid2 do cells[3, 2]:='No';
+ end;
+
+ If c2=a1 then
+ begin
+  If z2>=x1 then With StringGrid2 do cells[3, 3]:='Yes' else With StringGrid2 do cells[3, 3]:='No';
+ end;
+ If c2=b1 then
+ begin
+  If z2>=y1 then With StringGrid2 do cells[3, 3]:='Yes' else With StringGrid2 do cells[3, 3]:='No';
+ end;
+ If c2=c1 then
+ begin
+  If z2>=z1 then With StringGrid2 do cells[3, 3]:='Yes' else With StringGrid2 do cells[3, 3]:='No';
+ end;
+
+end;
+
+end.
